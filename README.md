@@ -144,7 +144,8 @@ Average Waiting Time: (0+4+6)/3=3.33ms
 
 Average Turnaround Time: (8+9+8)/3=8.33ms
 
-Conclusion:
+## Conclusion:
+
 Each CPU scheduling algorithm has its own advantages and disadvantages, making them suitable for different types of operating systems and applications. The choice of a scheduling algorithm depends on the specific requirements such as minimizing waiting time, ensuring fairness, or prioritizing critical processes.
 
 This report provides a comprehensive comparison of FCFS, SJF, Priority, and Round Robin scheduling algorithms, highlighting their characteristics, advantages, disadvantages, and performance metrics with examples.
