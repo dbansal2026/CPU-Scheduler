@@ -174,9 +174,75 @@ void roundRobin(vector<Task>& tasks, int timeQuantum) {
     }
 }
 ```
+## Main Function
 
+The main function initializes tasks based on user input, allows the user to choose the scheduling algorithm, and displays detailed results including average waiting time and average turnaround time.
 
+```cpp
 
+int main() {
+    int n, timeQuantum, choice;
+    cout << "Enter the number of tasks (max 50): ";
+    cin >> n;
 
+    if (n > 50) {
+        cout << "Number of tasks should not exceed 50." << endl;
+        return 1;
+    }
+
+    vector<Task> tasks(n);
+    for (int i = 0; i < n; ++i) {
+        cout << "Enter arrival time, burst time, and priority for task " << i + 1 << ": ";
+        cin >> tasks[i].arrivalTime >> tasks[i].burstTime >> tasks[i].priority;
+        tasks[i].id = i + 1;
+        tasks[i].remainingTime = tasks[i].burstTime;
+    }
+
+    cout << "Choose the scheduling algorithm:\n";
+    cout << "1. FCFS\n2. SJF\n3. Priority\n4. Round Robin\n";
+    cin >> choice;
+
+    if (choice == 4) {
+        cout << "Enter time quantum for Round Robin scheduling: ";
+        cin >> timeQuantum;
+    }
+
+    vector<Task> selectedTasks = tasks;
+
+    switch (choice) {
+        case 1:
+            fcfs(selectedTasks);
+            printResults(selectedTasks, "FCFS");
+            break;
+        case 2:
+            sjf(selectedTasks);
+            printResults(selectedTasks, "SJF");
+            break;
+        case 3:
+            priorityScheduling(selectedTasks);
+            printResults(selectedTasks, "Priority");
+            break;
+        case 4:
+            roundRobin(selectedTasks, timeQuantum);
+            printResults(selectedTasks, "Round Robin");
+            break;
+        default:
+            cout << "Invalid choice!" << endl;
+            return 1;
+    }
+
+    float avgWaitingTime, avgTurnaroundTime;
+    calculateAverageTimes(selectedTasks, avgWaitingTime, avgTurnaroundTime);
+    cout << "\nAverage Waiting Time: " << avgWaitingTime << endl;
+    cout << "Average Turnaround Time: " << avgTurnaroundTime << endl;
+
+    return 0;
+}
+```
+The main function facilitates interaction with the user, allowing them to input task details and select a scheduling algorithm. It then executes the chosen algorithm on the task set and displays comprehensive results, including average waiting time and average turnaround time.
+
+## Conclusion
+
+In conclusion, this document has provided an in-depth explanation of four CPU scheduling algorithms: FCFS, SJF, Priority Scheduling, and Round Robin. Each algorithm has been implemented in C++, allowing for simulation and evaluation of task scheduling strategies based on arrival time, burst time, and priority. Understanding these algorithms is essential for optimizing CPU utilization, improving system performance, and meeting application-specific requirements.
 
 
